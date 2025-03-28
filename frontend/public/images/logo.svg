@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>AskMedicine Logo</title>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="logoGradient">
+            <stop stop-color="#4F46E5" offset="0%"></stop>
+            <stop stop-color="#7C3AED" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle fill="url(#logoGradient)" cx="100" cy="100" r="95"></circle>
+        <path d="M100,30 C120,30 130,50 130,70 C130,90 115,100 100,100 C85,100 70,90 70,70 C70,50 80,30 100,30 Z" fill="white"></path>
+        <rect x="95" y="40" width="10" height="120" rx="5" fill="white"></rect>
+        
+        <!-- Left snake -->
+        <path d="M75,50 C60,65 60,75 70,90 C80,105 70,120 55,130" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"></path>
+        
+        <!-- Right snake -->
+        <path d="M125,50 C140,65 140,75 130,90 C120,105 130,120 145,130" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"></path>
+        
+        <!-- Snake heads -->
+        <circle cx="55" cy="130" r="5" fill="white"></circle>
+        <circle cx="145" cy="130" r="5" fill="white"></circle>
+        
+        <!-- Wings -->
+        <path d="M75,65 C65,50 85,40 100,60" stroke="white" stroke-width="4" fill="none"></path>
+        <path d="M125,65 C135,50 115,40 100,60" stroke="white" stroke-width="4" fill="none"></path>
+    </g>
+</svg> 
