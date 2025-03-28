@@ -35,8 +35,17 @@ def cached_answer(question):
 
 @app.route('/')
 def index():
-    """Serve the main page"""
-    return render_template('medinquire.html')
+    """Root endpoint - returns API information"""
+    return jsonify({
+        'name': 'AskMedicine API',
+        'version': '1.0',
+        'status': 'running',
+        'endpoints': {
+            '/api/query': 'POST - Submit a medical query',
+            '/api/health': 'GET - Check API health',
+            '/api/history': 'GET - Get query history, DELETE - Clear history'
+        }
+    })
 
 @app.route('/api/query', methods=['POST'])
 def query():
