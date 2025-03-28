@@ -66,6 +66,10 @@ def query():
             'Content-Type': 'application/json'
         }
 
+        # Print API key for debugging (first 5 chars only for security)
+        api_key_prefix = DEEPSEEK_API_KEY[:5] if DEEPSEEK_API_KEY else "None"
+        print(f"Using DeepSeek API key prefix: {api_key_prefix}...")
+
         payload = {
             'messages': [
                 {
@@ -81,15 +85,24 @@ def query():
         }
 
         # Make request to DeepSeek API
-        response = requests.post(
-            'https://api.deepseek.com/v1/chat/completions',
-            headers=headers,
-            json=payload,
-            stream=True
-        )
-
-        if response.status_code != 200:
-            return jsonify({'error': 'Failed to get response from DeepSeek API'}), 500
+        try:
+            response = requests.post(
+                'https://api.deepseek.com/v1/chat/completions',
+                headers=headers,
+                json=payload,
+                stream=True
+            )
+            
+            print(f"DeepSeek API response status: {response.status_code}")
+            
+            if response.status_code != 200:
+                error_content = response.text
+                print(f"DeepSeek API error response: {error_content}")
+                return jsonify({'error': f'Failed to get response from DeepSeek API: {error_content}'}), 500
+                
+        except Exception as api_error:
+            print(f"Error making request to DeepSeek API: {api_error}")
+            return jsonify({'error': f'Error connecting to DeepSeek API: {str(api_error)}'}), 500
 
         def generate():
             full_response = ""
