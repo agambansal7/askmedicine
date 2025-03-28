@@ -1,0 +1,19 @@
+{
+  "name": "askmedicine",
+  "version": "1.0.0",
+  "description": "Medical Research Assistant powered by 36 million medical records",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "cd frontend && npm install && npm run build",
+    "postinstall": "npm run build"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6"
+  }
+}
