@@ -21,8 +21,8 @@ app.secret_key = os.urandom(24)
 # Ensure session history is initialized
 HISTORY = []
 
-# Get API key from environment variable
-DEEPSEEK_API_KEY = os.getenv('DEEPSEEK_API_KEY')
+# Get API key from environment variable or use the hardcoded one
+DEEPSEEK_API_KEY = os.getenv('DEEPSEEK_API_KEY') or "sk-ccfc35d1bf204ca88c2ad5f3e576f6c7"
 
 # Cache for storing responses
 response_cache = {}
