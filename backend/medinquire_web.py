@@ -133,6 +133,43 @@ def query():
         print(f"Error in query endpoint: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/query-alt', methods=['POST'])
+def query_alternative():
+    """Alternative query endpoint using a simplified mock response"""
+    try:
+        data = request.get_json()
+        query_text = data.get('query')
+        
+        if not query_text:
+            return jsonify({'error': 'No query provided'}), 400
+
+        # For testing purposes, return a mock response
+        def generate_mock():
+            responses = [
+                "Analyzing your medical query...\n\n",
+                "Based on medical literature, ",
+                "I can provide the following information about your question:\n\n",
+                f"You asked: {query_text}\n\n",
+                "This is a test response from AskMedicine's alternative endpoint. ",
+                "The main endpoint is currently being updated. ",
+                "Please check back shortly for full functionality with DeepSeek API integration."
+            ]
+            
+            full_response = ""
+            for chunk in responses:
+                full_response += chunk
+                yield f"data: {json.dumps({'content': chunk})}\n\n"
+                time.sleep(0.5)  # Simulate streaming delay
+                
+            # Cache the complete response
+            response_cache[query_text] = {'content': full_response}
+                
+        return Response(stream_with_context(generate_mock()), mimetype='text/event-stream')
+        
+    except Exception as e:
+        print(f"Error in alternative query endpoint: {e}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
